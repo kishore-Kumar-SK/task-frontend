@@ -38,7 +38,7 @@ const Input = ({ arr1, setArr1 }) => {
       setTextFieldValue("");
     }
   };
-
+  const setter = true;
   return (
     <Box
       style={{
@@ -57,8 +57,8 @@ const Input = ({ arr1, setArr1 }) => {
           onChange={(e) => setTextFieldValue(e.target.value)}
         />
         <Button
-          style={{ color: "red" }}
-          color="primary"
+          style={{ color: "red", marginLeft: "5px" }}
+          variant="contained"
           onClick={handleAddButtonClick}
         >
           +
@@ -73,16 +73,32 @@ const Input = ({ arr1, setArr1 }) => {
           justifyContent: "center",
           alignItems: "center",
           overflowY: "auto",
+          width: "100%",
         }}
       >
         <ul>
           {myArray.map((item, index) => (
-            <li
-              key={index}
-              style={{ listStyleType: "none", fontSize: "1.3rem" }}
+            <div
+              style={{
+                width: "301px",
+
+                backgroundColor: setter ? "red" : "green",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
             >
-              {item}
-            </li>
+              <li
+                key={index}
+                style={{
+                  color: "red",
+                  listStyleType: "none",
+                  fontSize: "1.3rem",
+                }}
+              >
+                {item}
+              </li>
+            </div>
           ))}
         </ul>
       </div>

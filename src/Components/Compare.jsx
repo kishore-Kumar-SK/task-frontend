@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import Animation from "./Animation";
 
-const Compare = ({ arr1, arr2, setState, setFlag }) => {
+const Compare = ({ arr1, arr2, flag, setFlag }) => {
+  //   console.log("flag is " + flag);
   const arr3 = [];
   if (arr1.length >= arr2.length) {
     for (let i = 0; i < arr1.length; i++) {
@@ -15,12 +16,16 @@ const Compare = ({ arr1, arr2, setState, setFlag }) => {
     for (let i = 0; i < arr2.length; i++) {
       for (let j = 0; j < arr1.length; j++) {
         if (arr2[i] === arr1[j]) {
-          arr3.push(arr1[i]);
+          arr3.push(arr2[i]);
         }
       }
     }
   }
-  setFlag(false);
+
+  //   useEffect(() => {
+  //     setFlag((prev) => !prev);
+  //   }, [arr3.length]);
+
 
   return (
     <div>
@@ -31,7 +36,7 @@ const Compare = ({ arr1, arr2, setState, setFlag }) => {
           </li>
         ))}
       </ul>
-      {setState(true)}
+      {/* {setState(true)} */}
     </div>
   );
 };

@@ -36,8 +36,8 @@ const Input2 = ({ arr2, setArr2 }) => {
           onChange={(e) => setTextFieldValue(e.target.value)}
         />
         <Button
-          style={{ color: "red" }}
-          color="primary"
+          style={{ color: "red", marginLeft: "5px" }}
+          variant="contained"
           onClick={handleAddButtonClick}
         >
           +
