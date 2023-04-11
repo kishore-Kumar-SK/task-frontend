@@ -1,27 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
-
-// function addItems(value) {
-//   array[i] = document.getElementById("items").value;
-//   i++;
-// let text = document.getElementById("items").value
-//   return <List item={array[i]} />;
-//   console.log(value);
-//   array.push(value);
-//   document.getElementById("items").value = "";
-// }
-
-// function List({ arr }) {
-//   console.log(arr);
-//   return (
-//     <ul>
-//       {arr.map((item) => (
-//         <li>{item}</li>
-//       ))}
-//     </ul>
-//   );
-// }
+import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 const Input = ({ arr1, setArr1 }) => {
   const [myArray, setMyArray] = useState([]);
@@ -38,7 +19,25 @@ const Input = ({ arr1, setArr1 }) => {
       setTextFieldValue("");
     }
   };
-  const setter = true;
+
+  let setter1;
+  function isAlphabetsOnly(str) {
+    if (/^[a-zA-Z]+$/.test(str)) {
+      setter1 = true;
+    } else {
+      setter1 = false;
+    }
+    return setter1;
+  }
+
+  function removeItem(itemIndex) {
+    const newMyArray = [...myArray];
+    const newArr1 = [...arr1];
+    newMyArray.splice(itemIndex, 1);
+    newArr1.splice(itemIndex, 1);
+    setMyArray(newMyArray);
+    setArr1(newArr1);
+  }
   return (
     <Box
       style={{
@@ -48,20 +47,22 @@ const Input = ({ arr1, setArr1 }) => {
         display: "flex",
         flex: "1",
         flexDirection: "column",
+        justifyContent: "center",
       }}
     >
       <div style={{ display: "flex", flex: "1", flexDirection: "row" }}>
         <TextField
+          style={{ width: "100%" }}
           id="list"
           value={textFieldValue}
           onChange={(e) => setTextFieldValue(e.target.value)}
         />
         <Button
-          style={{ color: "red", marginLeft: "5px" }}
+          style={{ color: "#fff", marginLeft: "8px" }}
           variant="contained"
           onClick={handleAddButtonClick}
         >
-          +
+          <h2>+</h2>
         </Button>
       </div>
 
@@ -81,23 +82,45 @@ const Input = ({ arr1, setArr1 }) => {
             <div
               style={{
                 width: "301px",
-
-                backgroundColor: setter ? "red" : "green",
+                borderRadius: "5rem 5rem 5rem 5rem",
+                margin: "10px",
+                padding: "5px",
+                backgroundColor: isAlphabetsOnly(item) ? "#00ff80" : "#ff4d4d",
                 display: "flex",
-                justifyContent: "center",
+                justifyContent: "space-between",
                 alignItems: "center",
               }}
             >
+              <Button
+                style={{
+                  height: "3rem",
+                  width: "3rem",
+                  borderRadius: "50%",
+                }}
+              >
+                <ArrowCircleRightIcon />
+              </Button>
               <li
                 key={index}
                 style={{
-                  color: "red",
+                  color: "black",
                   listStyleType: "none",
                   fontSize: "1.3rem",
                 }}
               >
                 {item}
               </li>
+              <Button
+                style={{
+                  height: "3rem",
+                  width: "3rem",
+                  fontSize: "2rem",
+                  borderRadius: "50%",
+                }}
+                onClick={() => removeItem(index)}
+              >
+                <CancelIcon />
+              </Button>
             </div>
           ))}
         </ul>
