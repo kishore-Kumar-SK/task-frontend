@@ -55,7 +55,7 @@ const Input = ({ arr1, setArr1, arr2, signal, setSignal }) => {
   }
 
   function moveItem(itemIndex) {
-    console.log(signal.sigType);
+    // console.log(signal.sigType);
     setSignal((prev) => ({
       ...prev,
       sigType: 2,

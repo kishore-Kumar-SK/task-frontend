@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 // import Animation from "./Animation";
 
 const Compare = ({ arr1, arr2, setState }) => {
-  //   console.log("flag is " + flag);
   const arr3 = [];
   if (arr1.length >= arr2.length) {
     for (let i = 0; i < arr1.length; i++) {
@@ -23,20 +22,54 @@ const Compare = ({ arr1, arr2, setState }) => {
   }
 
   useEffect(() => {
-      
-        setState((prev) => !prev);
-  }, [arr3.length]);
+    setState((prev) => !prev);
+  }, [arr1.length || arr2.length]);
+
+  let setter1;
+  function isAlphabetsOnly(str) {
+    if (/^[a-zA-Z]+$/.test(str)) {
+      setter1 = true;
+    } else {
+      setter1 = false;
+    }
+    return setter1;
+  }
 
   return (
-    <div>
+    <div
+      style={{
+        marginTop: "20px",
+        height: "260px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        overflowY: "auto",
+        width: "100%",
+      }}
+    >
       <ul>
         {arr3.map((item, index) => (
-          <li key={index} style={{ listStyleType: "none", fontSize: "1.3rem" }}>
-            {item}
-          </li>
+          <div
+            style={{
+              width: "301px",
+              borderRadius: "5rem 5rem 5rem 5rem",
+              margin: "10px",
+              padding: "5px",
+              backgroundColor: isAlphabetsOnly(item) ? "#00ff80" : "#ff4d4d",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <li
+              key={index}
+              style={{ listStyleType: "none", fontSize: "1.3rem" }}
+            >
+              {item}
+            </li>
+          </div>
         ))}
       </ul>
-      {/* {setState(true)} */}
     </div>
   );
 };

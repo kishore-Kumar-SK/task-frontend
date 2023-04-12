@@ -8,8 +8,11 @@ import { Button } from "@mui/material";
 function App() {
   const [arr1, setArr1] = useState([]);
   const [arr2, setArr2] = useState([]);
+  
   const [signal, setSignal] = useState({ sigType: 0, message: "" });
   const [state, setState] = useState(false);
+
+
 
   return (
     <div
@@ -91,7 +94,6 @@ function App() {
               Compare
             </Button>
             <div style={{ height: "100%", width: "100%" }}>
-              {/* <Compare arr1={arr1} arr2={arr2} /> */}
 
               {state ? (
                 <Compare arr1={arr1} arr2={arr2} setState={setState} />
