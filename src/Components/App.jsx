@@ -8,8 +8,9 @@ import { Button } from "@mui/material";
 function App() {
   const [arr1, setArr1] = useState([]);
   const [arr2, setArr2] = useState([]);
+  const [signal, setSignal] = useState({ sigType: 0, message: "" });
   const [state, setState] = useState(false);
-  const [flag, setFlag] = useState(false);
+
   return (
     <div
       style={{
@@ -39,7 +40,14 @@ function App() {
               borderStyle: "dotted",
             }}
           >
-            <Input arr1={arr1} setArr1={setArr1} />
+            <Input
+              arr1={arr1}
+              setArr1={setArr1}
+              arr2={arr2}
+              setArr2={setArr2}
+              signal={signal}
+              setSignal={setSignal}
+            />
           </div>
           <div
             style={{
@@ -52,7 +60,14 @@ function App() {
               borderStyle: "dotted",
             }}
           >
-            <Input2 arr2={arr2} setArr2={setArr2} />
+            <Input2
+              arr1={arr1}
+              setArr1={setArr1}
+              arr2={arr2}
+              setArr2={setArr2}
+              signal={signal}
+              setSignal={setSignal}
+            />
           </div>
           <div
             style={{
@@ -70,26 +85,27 @@ function App() {
               variant="contained"
               style={{ width: "100px", marginBottom: "50px" }}
               onClick={() => {
-                setFlag((prev) => !prev);
+                setState((prev) => !prev);
               }}
             >
               Compare
             </Button>
             <div style={{ height: "100%", width: "100%" }}>
-              <Compare arr1={arr1} arr2={arr2} />
+              {/* <Compare arr1={arr1} arr2={arr2} /> */}
 
-              {/* {flag ? (
-                <Compare arr1={flag ? arr1 : []} arr2={flag ? arr2 : []} />
+              {state ? (
+                <Compare arr1={arr1} arr2={arr2} setState={setState} />
               ) : (
                 <></>
-              )} */}
+              )}
             </div>
           </div>
         </div>
       </div>
+      {console.log(arr1, arr2)}
       <div style={{ flex: "1", background: "white", borderStyle: "dotted" }}>
         <div style={{ height: "100%", width: "100%" }}>
-          <Animation state={flag} setState={setState} />
+          {/* <Animation state={flag} setState={setState} /> */}
         </div>
       </div>
     </div>

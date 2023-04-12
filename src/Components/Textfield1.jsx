@@ -4,14 +4,29 @@ import { Box } from "@mui/system";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import CancelIcon from "@mui/icons-material/Cancel";
 
-const Input = ({ arr1, setArr1 }) => {
-  const [myArray, setMyArray] = useState([]);
+const Input = ({ arr1, setArr1, arr2, signal, setSignal }) => {
+  const [myArray1, setMyArray] = useState([]);
   const [textFieldValue, setTextFieldValue] = useState("");
+  
+
+  useEffect(() => {
+    function moves() {
+      if (signal.sigType === 1) {
+        if (!arr1.includes(signal.message)) {
+          setMyArray([...myArray1, signal.message]);
+          setArr1((prev) => [...prev, signal.message]);
+        } else {
+          alert("text already entered");
+        }
+      }
+    }
+    moves();
+  }, [signal]);
 
   const handleAddButtonClick = () => {
     if (textFieldValue.trim() !== "") {
       if (!arr1.includes(textFieldValue)) {
-        setMyArray([...myArray, textFieldValue]);
+        setMyArray([...myArray1, textFieldValue]);
         setArr1((prev) => [...prev, textFieldValue]);
       } else {
         alert("text already entered");
@@ -31,12 +46,24 @@ const Input = ({ arr1, setArr1 }) => {
   }
 
   function removeItem(itemIndex) {
-    const newMyArray = [...myArray];
+    const newMyArray1 = [...myArray1];
     const newArr1 = [...arr1];
-    newMyArray.splice(itemIndex, 1);
+    newMyArray1.splice(itemIndex, 1);
     newArr1.splice(itemIndex, 1);
-    setMyArray(newMyArray);
+    setMyArray(newMyArray1);
     setArr1(newArr1);
+  }
+
+  function moveItem(itemIndex) {
+    console.log(signal.sigType);
+    setSignal((prev) => ({
+      ...prev,
+      sigType: 2,
+      message: myArray1[itemIndex],
+    }));
+    if (!arr2.includes(myArray1[itemIndex])) {
+      removeItem(itemIndex);
+    }
   }
   return (
     <Box
@@ -78,7 +105,7 @@ const Input = ({ arr1, setArr1 }) => {
         }}
       >
         <ul>
-          {myArray.map((item, index) => (
+          {myArray1.map((item, index) => (
             <div
               style={{
                 width: "301px",
@@ -97,6 +124,7 @@ const Input = ({ arr1, setArr1 }) => {
                   width: "3rem",
                   borderRadius: "50%",
                 }}
+                onClick={() => moveItem(index)}
               >
                 <ArrowCircleRightIcon />
               </Button>

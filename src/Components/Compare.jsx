@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 // import Animation from "./Animation";
 
-const Compare = ({ arr1, arr2, flag, setFlag }) => {
+const Compare = ({ arr1, arr2, setState }) => {
   //   console.log("flag is " + flag);
   const arr3 = [];
   if (arr1.length >= arr2.length) {
@@ -22,10 +22,10 @@ const Compare = ({ arr1, arr2, flag, setFlag }) => {
     }
   }
 
-  //   useEffect(() => {
-  //     setFlag((prev) => !prev);
-  //   }, [arr3.length]);
-
+  useEffect(() => {
+      
+        setState((prev) => !prev);
+  }, [arr3.length]);
 
   return (
     <div>
