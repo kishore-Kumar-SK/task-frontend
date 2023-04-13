@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 // import Animation from "./Animation";
 
-const Compare = ({ arr1, arr2, setState }) => {
+const Compare = ({ arr1, arr2, arr4, setState, setArr4, setValue }) => {
   const arr3 = [];
   if (arr1.length >= arr2.length) {
     for (let i = 0; i < arr1.length; i++) {
@@ -23,7 +23,9 @@ const Compare = ({ arr1, arr2, setState }) => {
 
   useEffect(() => {
     setState((prev) => !prev);
-  }, [arr1.length || arr2.length]);
+    setValue(arr4.length);
+    setArr4([...arr3]);
+  }, [arr1.length, arr2.length]);
 
   let setter1;
   function isAlphabetsOnly(str) {

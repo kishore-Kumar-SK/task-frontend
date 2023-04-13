@@ -8,11 +8,11 @@ import { Button } from "@mui/material";
 function App() {
   const [arr1, setArr1] = useState([]);
   const [arr2, setArr2] = useState([]);
-  
+  const [arr4, setArr4] = useState([]);
   const [signal, setSignal] = useState({ sigType: 0, message: "" });
   const [state, setState] = useState(false);
-
-
+  const [state2, setState2] = useState(true);
+  const [value, setValue] = useState(0);
 
   return (
     <div
@@ -94,9 +94,16 @@ function App() {
               Compare
             </Button>
             <div style={{ height: "100%", width: "100%" }}>
-
               {state ? (
-                <Compare arr1={arr1} arr2={arr2} setState={setState} />
+                <Compare
+                  arr1={arr1}
+                  arr2={arr2}
+                  arr4={arr4}
+                  setState={setState}
+                  setArr4={setArr4}
+                  setValue={setValue}
+                  setState2={setState2}
+                />
               ) : (
                 <></>
               )}
@@ -105,9 +112,35 @@ function App() {
         </div>
       </div>
       {console.log(arr1, arr2)}
+      {console.log(arr4)}
+      {console.log(value)}
       <div style={{ flex: "1", background: "white", borderStyle: "dotted" }}>
-        <div style={{ height: "100%", width: "100%" }}>
-          {/* <Animation state={flag} setState={setState} /> */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div styles={{ flex: 1 }}>
+            {arr4.length > 0 && state ? (
+              <h1 styles={{ fontSize: "5rem" }}>MATCH FOUND.....!</h1>
+            ) : (
+              <></>
+            )}
+          </div>
+          <div styles={{ flex: 1 }}>
+            {value < arr4.length && arr4.length && state > 0 ? (
+              <h2>item added</h2>
+            ) : arr4.length > 0 && value > arr4.length ? (
+              <h2>item removed</h2>
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
       </div>
     </div>
