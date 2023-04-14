@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-// import Animation from "./Animation";
+
 
 const Compare = ({ arr1, arr2, arr4, setState, setArr4, setValue }) => {
   const arr3 = [];
@@ -41,7 +41,7 @@ const Compare = ({ arr1, arr2, arr4, setState, setArr4, setValue }) => {
     <div
       style={{
         marginTop: "20px",
-        height: "260px",
+        height: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

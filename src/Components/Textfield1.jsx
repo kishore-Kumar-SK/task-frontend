@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Button, TextField } from "@mui/material";
-import { Box } from "@mui/system";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import CancelIcon from "@mui/icons-material/Cancel";
 
 const Input = ({ arr1, setArr1, arr2, signal, setSignal }) => {
   const [myArray1, setMyArray] = useState([]);
   const [textFieldValue, setTextFieldValue] = useState("");
-  
 
   useEffect(() => {
     function moves() {
@@ -66,7 +64,7 @@ const Input = ({ arr1, setArr1, arr2, signal, setSignal }) => {
     }
   }
   return (
-    <Box
+    <div
       style={{
         position: "absolute",
         margin: "50px",
@@ -96,19 +94,19 @@ const Input = ({ arr1, setArr1, arr2, signal, setSignal }) => {
       <div
         style={{
           marginTop: "20px",
-          height: "260px",
+          height: "100%",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          overflowY: "auto",
           width: "100%",
+          overflowY: "auto",
         }}
       >
         <ul>
           {myArray1.map((item, index) => (
             <div
               style={{
-                width: "301px",
+                width: "fitContent",
                 borderRadius: "5rem 5rem 5rem 5rem",
                 margin: "10px",
                 padding: "5px",
@@ -153,7 +151,7 @@ const Input = ({ arr1, setArr1, arr2, signal, setSignal }) => {
           ))}
         </ul>
       </div>
-    </Box>
+    </div>
   );
 };
 

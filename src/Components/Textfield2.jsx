@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Button, TextField } from "@mui/material";
-import { Box } from "@mui/system";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import CancelIcon from "@mui/icons-material/Cancel";
 
 const Input2 = ({ arr2, setArr2, arr1, signal, setSignal }) => {
   const [myArray2, setMyArray] = useState([]);
   const [textFieldValue, setTextFieldValue] = useState("");
-  
 
   useEffect(() => {
     function moves() {
@@ -65,7 +63,7 @@ const Input2 = ({ arr2, setArr2, arr1, signal, setSignal }) => {
   }
 
   return (
-    <Box
+    <div
       style={{
         position: "absolute",
         margin: "50px",
@@ -74,6 +72,7 @@ const Input2 = ({ arr2, setArr2, arr1, signal, setSignal }) => {
         flex: "1",
         flexDirection: "column",
         justifyContent: "center",
+        overflowY: "auto",
       }}
     >
       <div style={{ display: "flex", flex: "1", flexDirection: "row" }}>
@@ -95,7 +94,8 @@ const Input2 = ({ arr2, setArr2, arr1, signal, setSignal }) => {
       <div
         style={{
           marginTop: "20px",
-          height: "260px",
+          height: "100%",
+          width: "100%",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -106,7 +106,7 @@ const Input2 = ({ arr2, setArr2, arr1, signal, setSignal }) => {
           {myArray2.map((item, index) => (
             <div
               style={{
-                width: "301px",
+                width: "100%",
                 borderRadius: "5rem 5rem 5rem 5rem",
                 margin: "10px",
                 padding: "5px",
@@ -120,7 +120,7 @@ const Input2 = ({ arr2, setArr2, arr1, signal, setSignal }) => {
                 style={{
                   height: "3rem",
                   width: "3rem",
-                  borderRadius: "60%",
+                  borderRadius: "50%",
                 }}
                 onClick={() => removeItem(index)}
               >
@@ -146,7 +146,7 @@ const Input2 = ({ arr2, setArr2, arr1, signal, setSignal }) => {
           ))}
         </ul>
       </div>
-    </Box>
+    </div>
   );
 };
 
