@@ -66,24 +66,23 @@ const Input = ({ arr1, setArr1, arr2, signal, setSignal }) => {
   return (
     <div
       style={{
-        position: "absolute",
         margin: "50px",
+        // height: "100%",
         padding: "30px",
         display: "flex",
-        flex: "1",
         flexDirection: "column",
         justifyContent: "center",
       }}
     >
-      <div style={{ display: "flex", flex: "1", flexDirection: "row" }}>
+      <div style={{ display: "flex", flexDirection: "row" }}>
         <TextField
-          style={{ width: "100%" }}
+          style={{ width: "100%", flex: "11" }}
           id="list"
           value={textFieldValue}
           onChange={(e) => setTextFieldValue(e.target.value)}
         />
         <Button
-          style={{ color: "#fff", marginLeft: "8px" }}
+          style={{ color: "#fff", marginLeft: "8px", flex: "1" }}
           variant="contained"
           onClick={handleAddButtonClick}
         >
@@ -94,11 +93,10 @@ const Input = ({ arr1, setArr1, arr2, signal, setSignal }) => {
       <div
         style={{
           marginTop: "20px",
-          height: "100%",
+          height: "270px",
+          width: "100%",
           display: "flex",
           justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
           overflowY: "auto",
         }}
       >
@@ -106,14 +104,15 @@ const Input = ({ arr1, setArr1, arr2, signal, setSignal }) => {
           {myArray1.map((item, index) => (
             <div
               style={{
-                width: "fitContent",
                 borderRadius: "5rem 5rem 5rem 5rem",
-                margin: "10px",
-                padding: "5px",
+                margin: "15px",
+                // padding: "5px",
                 backgroundColor: isAlphabetsOnly(item) ? "#00ff80" : "#ff4d4d",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
+                boxShadow: "2.5px 6px 1px 1px #888888",
+                overflowY: "auto",
               }}
             >
               <Button
@@ -140,7 +139,6 @@ const Input = ({ arr1, setArr1, arr2, signal, setSignal }) => {
                 style={{
                   height: "3rem",
                   width: "3rem",
-                  fontSize: "2rem",
                   borderRadius: "50%",
                 }}
                 onClick={() => removeItem(index)}

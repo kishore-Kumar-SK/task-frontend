@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 
-
 const Compare = ({ arr1, arr2, arr4, setState, setArr4, setValue }) => {
   const arr3 = [];
   if (arr1.length >= arr2.length) {
@@ -41,26 +40,27 @@ const Compare = ({ arr1, arr2, arr4, setState, setArr4, setValue }) => {
     <div
       style={{
         marginTop: "20px",
-        height: "100%",
+        height: "270px",
+        padding: "10px",
+        width: "100%",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
         overflowY: "auto",
-        width: "100%",
       }}
     >
       <ul>
         {arr3.map((item, index) => (
           <div
             style={{
-              width: "301px",
               borderRadius: "5rem 5rem 5rem 5rem",
               margin: "10px",
-              padding: "5px",
+              // padding: "5px",
               backgroundColor: isAlphabetsOnly(item) ? "#00ff80" : "#ff4d4d",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              boxShadow: "2.5px 6px 1px 1px #888888",
+              overflowY: "auto",
             }}
           >
             <li

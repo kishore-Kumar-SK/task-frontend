@@ -6,7 +6,27 @@ function Pages() {
   const [arr1, setArr1] = useState([]);
   const [arr2, setArr2] = useState([]);
   const [arr4, setArr4] = useState([]);
+  var count = 0;
+  var numCount = 0;
+  var special = 0;
 
+  let setter1;
+  function isAlphabetsOnly(str) {
+    if (/^[a-zA-Z]+$/.test(str)) {
+      setter1 = true;
+    } else {
+      setter1 = false;
+    }
+    return setter1;
+  }
+  function isNumeric(str) {
+    if (/^[0-9]+$/.test(str)) {
+      setter1 = true;
+    } else {
+      setter1 = false;
+    }
+    return setter1;
+  }
 
   const arr3 = [];
   if (arr1.length >= arr2.length) {
@@ -14,6 +34,13 @@ function Pages() {
       for (let j = 0; j < arr2.length; j++) {
         if (arr1[i] === arr2[j]) {
           arr3.push(arr1[i]);
+          if (isAlphabetsOnly(arr1[i])) {
+            count++;
+          } else if (isNumeric(arr1[i])) {
+            numCount++;
+          } else {
+            special++;
+          }
         }
       }
     }
@@ -27,19 +54,9 @@ function Pages() {
     }
   }
 
-  let setter1;
-  function isAlphabetsOnly(str) {
-    if (/^[a-zA-Z]+$/.test(str)) {
-      setter1 = true;
-    } else {
-      setter1 = false;
-    }
-    return setter1;
-  }
-
   useEffect(() => {
     if (location.state && location.state.data) {
-      const { arr1, arr2, arr4} = location.state.data;
+      const { arr1, arr2, arr4 } = location.state.data;
       setArr1(arr1);
       setArr2(arr2);
       setArr4(arr4);
@@ -54,13 +71,26 @@ function Pages() {
             marginTop: "20px",
             height: "100%",
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
             overflowY: "auto",
             width: "100%",
           }}
         >
-          <ul>
+          <h1 style={{ color: "red" }}>
+            <span style={{ color: "black" }}>string Count:</span>
+            {count}
+          </h1>
+          <h1 style={{ color: "red" }}>
+            <span style={{ color: "black" }}>Number Count:</span>
+            {numCount}
+          </h1>
+          <h1 style={{ color: "red" }}>
+            <span style={{ color: "black" }}>Aplhanumeric Count:</span>
+            {special}
+          </h1>
+          {/* <ul>
             {arr3.map((item, index) => (
               <div
                 style={{
@@ -84,7 +114,7 @@ function Pages() {
                 </li>
               </div>
             ))}
-          </ul>
+          </ul> */}
         </div>
       ) : (
         <h1>no match found</h1>
