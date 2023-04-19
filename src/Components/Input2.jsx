@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import UserContext from "../Context/UserContext";
 import { Button, TextField } from "@mui/material";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import CancelIcon from "@mui/icons-material/Cancel";
 
-const Input2 = ({ arr2, setArr2, arr1, signal, setSignal }) => {
+const Input2 = () => {
+  const { arr1, arr2, setArr2, signal, setSignal } = useContext(UserContext);
+
   const [myArray2, setMyArray] = useState([]);
   const [textFieldValue, setTextFieldValue] = useState("");
 

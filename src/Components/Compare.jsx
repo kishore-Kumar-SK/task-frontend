@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+import UserContext from "../Context/UserContext";
 
-const Compare = ({ arr1, arr2, arr4, setState, setArr4, setValue }) => {
+const Compare = () => {
   const arr3 = [];
+  const { arr1, arr2, arr4, setState, setArr4, setValue } =
+    useContext(UserContext);
   if (arr1.length >= arr2.length) {
     for (let i = 0; i < arr1.length; i++) {
       for (let j = 0; j < arr2.length; j++) {
@@ -54,7 +57,7 @@ const Compare = ({ arr1, arr2, arr4, setState, setArr4, setValue }) => {
             style={{
               borderRadius: "5rem 5rem 5rem 5rem",
               margin: "10px",
-              // padding: "5px",
+              padding: "15px",
               backgroundColor: isAlphabetsOnly(item) ? "#00ff80" : "#ff4d4d",
               display: "flex",
               justifyContent: "center",
@@ -65,7 +68,12 @@ const Compare = ({ arr1, arr2, arr4, setState, setArr4, setValue }) => {
           >
             <li
               key={index}
-              style={{ listStyleType: "none", fontSize: "1.3rem" }}
+              style={{
+                listStyleType: "none",
+                fontSize: "1.3rem",
+
+                textAlign: "center",
+              }}
             >
               {item}
             </li>

@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Button, TextField } from "@mui/material";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import CancelIcon from "@mui/icons-material/Cancel";
+import UserContext from "../Context/UserContext";
 
-const Input = ({ arr1, setArr1, arr2, signal, setSignal }) => {
+const Input1 = () => {
+  const { arr1, arr2, setArr1, signal, setSignal } = useContext(UserContext);
   const [myArray1, setMyArray] = useState([]);
   const [textFieldValue, setTextFieldValue] = useState("");
 
@@ -53,7 +55,6 @@ const Input = ({ arr1, setArr1, arr2, signal, setSignal }) => {
   }
 
   function moveItem(itemIndex) {
-    // console.log(signal.sigType);
     setSignal((prev) => ({
       ...prev,
       sigType: 2,
@@ -67,7 +68,6 @@ const Input = ({ arr1, setArr1, arr2, signal, setSignal }) => {
     <div
       style={{
         margin: "50px",
-        // height: "100%",
         padding: "30px",
         display: "flex",
         flexDirection: "column",
@@ -153,4 +153,4 @@ const Input = ({ arr1, setArr1, arr2, signal, setSignal }) => {
   );
 };
 
-export default Input;
+export default Input1;

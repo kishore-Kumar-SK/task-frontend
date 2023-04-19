@@ -90,31 +90,6 @@ function Pages() {
             <span style={{ color: "black" }}>Aplhanumeric Count:</span>
             {special}
           </h1>
-          {/* <ul>
-            {arr3.map((item, index) => (
-              <div
-                style={{
-                  width: "301px",
-                  borderRadius: "5rem 5rem 5rem 5rem",
-                  margin: "10px",
-                  padding: "5px",
-                  backgroundColor: isAlphabetsOnly(item)
-                    ? "#00ff80"
-                    : "#ff4d4d",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <li
-                  key={index}
-                  style={{ listStyleType: "none", fontSize: "1.3rem" }}
-                >
-                  {item}
-                </li>
-              </div>
-            ))}
-          </ul> */}
         </div>
       ) : (
         <h1>no match found</h1>
