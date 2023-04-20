@@ -21,8 +21,8 @@ export default function SignInSide() {
   const loginValues = { Username: "", password: "" };
   const [formValues, setformValue] = useState(loginValues);
   const [formErrors, setformErrors] = useState({});
-  const [adminlog1, setAdmin1] = useState({});
-  const [adminlog2, setAdmin2] = useState({});
+  // const [adminlog1, setAdmin1] = useState({});
+  // const [adminlog2, setAdmin2] = useState({});
   const [flag, setFlag] = useState(false);
 
   const handleChange = (e) => {
@@ -33,8 +33,8 @@ export default function SignInSide() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setformErrors(validate(formValues));
-    setAdmin1(credCheck(formValues));
-    setAdmin2();
+    // setAdmin1(credCheck(formValues));
+    // setAdmin2();
     setFlag(true);
   };
 
@@ -45,26 +45,26 @@ export default function SignInSide() {
     }
   }, [formErrors]);
 
-  const credCheck = (values) => {
-    const adminlog1 = {};
-    const adminlog2 = {};
-    const username1 = "admin1";
-    const password1 = "password1";
-    const username2 = "admin2";
-    const password2 = "password2";
+  // const credCheck = (values) => {
+  //   const adminlog1 = {};
+  //   const adminlog2 = {};
+  //   const username1 = "admin1";
+  //   const password1 = "password1";
+  //   const username2 = "admin2";
+  //   const password2 = "password2";
 
-    if (!(values.Username === username1)) {
-      adminlog1.Username = "invalid username !";
-    } else if (!(values.Username === username2)) {
-      adminlog2.Username = "invalid username !";
-    }
-    if (!(values.password === password1)) {
-      adminlog1.password = "invalid password";
-    } else if (!(values.Username === password2)) {
-      adminlog2.password = "invalid password !";
-    }
-    return adminlog1;
-  };
+  //   if (!(values.Username === username1)) {
+  //     adminlog1.Username = "invalid username !";
+  //   } else if (!(values.Username === username2)) {
+  //     adminlog2.Username = "invalid username !";
+  //   }
+  //   if (!(values.password === password1)) {
+  //     adminlog1.password = "invalid password";
+  //   } else if (!(values.Username === password2)) {
+  //     adminlog2.password = "invalid password !";
+  //   }
+  //   return adminlog1;
+  // };
 
   const validate = (values) => {
     const errors = {};
@@ -79,50 +79,46 @@ export default function SignInSide() {
 
   return (
     <div>
-      {/* {Object.keys(formErrors).length === 0 && flag ? (
-        Object.keys(adminlog).length === 0 ? (
-          navigate("/home")
-        ) : Object.keys(adminlog).length === 0 ? navigate("/admin2") :<></>
-          
-        
+      {Object.keys(formErrors).length === 0 && flag ? (
+        navigate("/admin2")
       ) : (
         <></>
-      )} */}
+      )}
       <ThemeProvider theme={theme}>
         <Grid container component="main" sx={{ height: "100vh" }}>
           <CssBaseline />
-          <Grid
-            item
-            xs={12}
-            sm={4}
-            md={7}
-            sx={{
-              backgroundImage: `url(${Image1})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
+          <Grid item xs={12} sm={4} md={7}>
             <div
               style={{
-                backgroundColor: "rgba(0,0,0,0)",
-                display: "flex",
-                flexDirection: "column",
-                marginLeft: "40px",
-                marginTop: "158px",
+                height: "100%",
+                padding: "20px",
+                backgroundImage: `url(${Image1})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
               }}
             >
-              <Typography component="h1" variant="h2" color="white">
-                New Street <span style={{ color: "#d5261a" }}>Tech</span>
-              </Typography>
-              <Typography
-                component="h1"
-                variant="h7"
-                color="white"
-                sx={{ fontWeight: "normal", fontSize: "1.5rem" }}
+              <div
+                style={{
+                  backgroundColor: "rgba(0,0,0,0)",
+                  display: "flex",
+                  flexDirection: "column",
+                  paddingLeft: "40px",
+                  paddingTop: "158px",
+                }}
               >
-                Your Fast Track To Future
-              </Typography>
+                <Typography component="h1" variant="h2" color="white">
+                  New Street <span style={{ color: "#d5261a" }}>Tech</span>
+                </Typography>
+                <Typography
+                  component="h1"
+                  variant="h7"
+                  color="white"
+                  sx={{ fontWeight: "normal", fontSize: "1.5rem" }}
+                >
+                  Your Fast Track To Future
+                </Typography>
+              </div>
             </div>
           </Grid>
           <Grid
