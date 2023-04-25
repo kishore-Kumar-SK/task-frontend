@@ -5,7 +5,6 @@ import Compare from "../Components/Compare";
 import { Button, Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../Context/UserContext";
-import { useLocation } from "react-router-dom";
 
 function Home() {
   const [arr1, setArr1] = useState([]);
@@ -15,21 +14,8 @@ function Home() {
   const [state, setState] = useState(false);
   const [value, setValue] = useState(0);
   const [theme, setTheme] = useState(true);
-  const [user, setUser] = useState();
-  const [pass, setPass] = useState();
 
-  const location = useLocation();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (location.state && location.state.data1) {
-      const { user, pass } = location.state.data1;
-      setUser(user);
-      setPass(pass);
-    }
-  }, [location.state]);
-  console.log(user);
-  console.log(pass);
 
   const data = {
     arr1: arr1,

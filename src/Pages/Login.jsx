@@ -21,8 +21,6 @@ export default function SignInSide() {
   const loginValues = { Username: "", password: "" };
   const [formValues, setformValue] = useState(loginValues);
   const [formErrors, setformErrors] = useState({});
-  // const [adminlog1, setAdmin1] = useState({});
-  // const [adminlog2, setAdmin2] = useState({});
   const [flag, setFlag] = useState(false);
 
   const handleChange = (e) => {
@@ -33,38 +31,43 @@ export default function SignInSide() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setformErrors(validate(formValues));
-    // setAdmin1(credCheck(formValues));
-    // setAdmin2();
     setFlag(true);
+    const username = formValues.Username;
+    const password = formValues.password;
+    const storedData = {
+      admin1: { password: "password1" },
+      admin2: { password: "password2" },
+    };
+
+    if (
+      username in storedData &&
+      storedData[username].password === password &&
+      flag
+    ) {
+      if (password === "password1") {
+        navigate("/home");
+        setFlag(false);
+      } else if (password === "password2") {
+        navigate("/admin2");
+        setFlag(false);
+      }
+    } else {
+      setformErrors({ Username: "Invalid credentials" });
+    }
   };
+
+  // useEffect(() => {
+  //   window.addEventListener("popstate", (e) => {
+  //     window.history.go(1);
+  //   });
+  // }, []);
 
   useEffect(() => {
     console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && flag) {
+    if (Object.keys(formErrors).length === 0) {
       console.log(formValues);
     }
   }, [formErrors]);
-
-  // const credCheck = (values) => {
-  //   const adminlog1 = {};
-  //   const adminlog2 = {};
-  //   const username1 = "admin1";
-  //   const password1 = "password1";
-  //   const username2 = "admin2";
-  //   const password2 = "password2";
-
-  //   if (!(values.Username === username1)) {
-  //     adminlog1.Username = "invalid username !";
-  //   } else if (!(values.Username === username2)) {
-  //     adminlog2.Username = "invalid username !";
-  //   }
-  //   if (!(values.password === password1)) {
-  //     adminlog1.password = "invalid password";
-  //   } else if (!(values.Username === password2)) {
-  //     adminlog2.password = "invalid password !";
-  //   }
-  //   return adminlog1;
-  // };
 
   const validate = (values) => {
     const errors = {};
@@ -79,11 +82,6 @@ export default function SignInSide() {
 
   return (
     <div>
-      {Object.keys(formErrors).length === 0 && flag ? (
-        navigate("/admin2")
-      ) : (
-        <></>
-      )}
       <ThemeProvider theme={theme}>
         <Grid container component="main" sx={{ height: "100vh" }}>
           <CssBaseline />
