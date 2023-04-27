@@ -74,10 +74,16 @@ const Admin1 = () => {
       return Pokicall.pokemonDetails(value?.data?.abilities[1]?.ability?.url);
     });
     const abilityAwait = async () => {
-      await Promise.all([promises1, promises2])
+      await Promise.all(promises1)
         .then((res) => {
-          setAbility1(res[0]);
-          setAbility2(res[1]);
+          setAbility1(res);
+        })
+        .catch((error) => {
+          console.error("Error: ", error);
+        });
+      await Promise.all(promises2)
+        .then((res) => {
+          setAbility2(res);
         })
         .catch((error) => {
           console.error("Error: ", error);
