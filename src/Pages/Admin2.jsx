@@ -28,9 +28,11 @@ const Admin1 = () => {
   const [tgl2, setTgl2] = useState(false);
   const ability1Click = () => {
     setTgl1((prev) => !prev);
+    setTgl2(false);
   };
   const ability2Click = () => {
     setTgl2((prev) => !prev);
+    setTgl1(false);
   };
 
   const handleClickOpen = (item, index) => {
@@ -274,7 +276,6 @@ const Admin1 = () => {
                     >
                       {ability1[ind]?.data?.effect_entries[1]?.effect}
                     </Typography>
-                    <hr></hr>
                     <Typography
                       variant="p"
                       sx={{ display: tgl1 ? "block" : "none" }}
