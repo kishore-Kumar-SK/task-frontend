@@ -24,6 +24,14 @@ const Admin1 = () => {
   const [ind, setInd] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [tgl1, setTgl1] = useState(false);
+  const [tgl2, setTgl2] = useState(false);
+  const ability1Click = () => {
+    setTgl1((prev) => !prev);
+  };
+  const ability2Click = () => {
+    setTgl2((prev) => !prev);
+  };
 
   const handleClickOpen = (item, index) => {
     setInd(index);
@@ -33,6 +41,11 @@ const Admin1 = () => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handletgl = () => {
+    setTgl1(false);
+    setTgl2(false);
   };
 
   useEffect(() => {
@@ -92,7 +105,7 @@ const Admin1 = () => {
     abilityAwait();
   }, [details]);
 
-  console.log("order", ability1);
+  console.log("order", ability1[0]?.data?.effect_entries[1]?.effect);
   function orderbyNoasc(order) {
     const sorted = Array.from(order).sort((a, b) =>
       a.data?.base_experience > b.data?.base_experience ? 1 : -1
@@ -203,7 +216,13 @@ const Admin1 = () => {
                     </Stack>
                   </CardContent>
                 </CardActionArea>
-                <Dialog open={open} onClose={handleClose}>
+                <Dialog
+                  open={open}
+                  onClose={() => {
+                    handleClose();
+                    handletgl();
+                  }}
+                >
                   <DialogContent
                     sx={{ display: "flex", flexDirection: "column" }}
                   >
@@ -230,29 +249,38 @@ const Admin1 = () => {
                         style={{
                           display: "flex",
                           flexDirection: "column",
+                          flex: "1",
                         }}
                       >
-                        <Typography variant="h4">
+                        <Button onClick={ability1Click}>
                           {selectedItem?.data?.abilities[0]?.ability?.name}
-                        </Typography>
-                        {/* <Typography variant="h2">
-                          {
-                            ability1[ind]?.data
-                              ?.effect_entries[1]?.effect
-                          }
-                        </Typography> */}
+                        </Button>
                       </div>
                       <div
                         style={{
                           display: "flex",
                           flexDirection: "column",
+                          flex: "1",
                         }}
                       >
-                        <Typography variant="h4">
+                        <Button onClick={ability2Click}>
                           {selectedItem?.data?.abilities[1]?.ability?.name}
-                        </Typography>
+                        </Button>
                       </div>
                     </div>
+                    <Typography
+                      variant="p"
+                      sx={{ display: tgl2 ? "block" : "none" }}
+                    >
+                      {ability1[ind]?.data?.effect_entries[1]?.effect}
+                    </Typography>
+                    <hr></hr>
+                    <Typography
+                      variant="p"
+                      sx={{ display: tgl1 ? "block" : "none" }}
+                    >
+                      {ability2[ind]?.data?.effect_entries[1]?.effect}
+                    </Typography>
                   </DialogContent>
                 </Dialog>
               </Card>
